@@ -92,10 +92,11 @@ $obj = new Google_Service_Storage_StorageObject();
 $obj->setName($file_name_in_gcs);
 
 // upload local file (file name: $local_file_path) 
+// set permission as public read.
 $results = $service->objects->insert(
     $bucket_name,
     $obj,
-    ['name' => $file_name_in_gcs, 'data' => file_get_contents($local_file_path), 'uploadType' => 'media']
+    ['name' => $file_name_in_gcs, 'data' => file_get_contents($local_file_path), 'uploadType' => 'media', 'predefinedAcl' => 'publicRead']
 );
 
 // print result
